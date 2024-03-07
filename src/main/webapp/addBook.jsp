@@ -20,47 +20,71 @@
 	<div align="center">
 		<h1 class="mt-2">Add Book</h1>
 
-		<form action="index.jsp">
-			<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
-		</form>
-
-
-		<div class="col-md-4 mt-2">
-			<label for="title">Title:</label> <input type="text"
-				class="form-control" id="title" required>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-start">
+					<form action="index.jsp">
+						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
+					</form>
+				</div>
+				<div class="col align-self-center">
+					<div class="col-md-12 mt-2">
+						<select class="btn btn-success dropdown-toggle" name="format"
+							id="format">
+							<option value="json">JSON</option>
+							<option value="xml">XML</option>
+							<option value="string">STRING</option>
+						</select>
+					</div>
+				</div>
+				<div class="col align-self-end">
+					<div class="col-md-12 mt-2">
+						<input class="btn btn-primary" id="btnSubmit" type="button"
+							value="SUBMIT" />
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-4 mt-2">
-			<label for="author">Author:</label> <input type="text"
-				class="form-control" id="author" required>
-		</div>
-		<div class="col-md-4 mt-2">
-			<label for="date">Date:</label> <input type="text"
-				class="form-control" id="date" required> <label for="genres">Genres:</label>
-			<input type="text" class="form-control" id="genres" required>
-		</div>
+		<br>
 
-		<div class="col-md-4 mt-2">
-			<label for="characters">Characters:</label> <input type="text"
-				class="form-control" id="characters" required>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-start">
+					<label for="title">Title:</label> <input type="text"
+						class="form-control" id="title" required>
+				</div>
+				<div class="col align-self-center">
+					<label for="author">Author:</label> <input type="text"
+						class="form-control" id="author" required>
+				</div>
+				<div class="col align-self-end">
+					<label for="date">Date:</label> <input type="text"
+						class="form-control" id="date" required>
+				</div>
+				<div class="col align-self-start">
+					<label for="genres">Genres:</label> <input type="text"
+						class="form-control" id="genres" required>
+				</div>
+			</div>
 		</div>
+		<br>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-center">
+					<label for="characters">Characters:</label> <input type="text"
+						class="form-control" id="characters" required>
+				</div>
 
-		<div class="col-md-4 mt-2">
-			<label for="synopsis">Synopsis:</label> <input type="text"
-				class="form-control" id="synopsis" required>
+			</div>
 		</div>
-
-		<div class="col-md-12 mt-2">
-			<br> <select class="btn btn-success dropdown-toggle"
-				name="format" id="format">
-				<option value="json">JSON</option>
-				<option value="xml">XML</option>
-				<option value="string">STRING</option>
-			</select>
-		</div>
-
-		<div class="col-md-12 mt-2">
-			<br> <input class="btn btn-primary" id="btnSubmit" type="button"
-				value="SUBMIT" />
+		<br>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-end">
+					<label for="synopsis">Synopsis:</label> <input type="text"
+						class="form-control" id="synopsis" required>
+				</div>
+			</div>
 		</div>
 
 		<div id="loading" class="mt-2 col-md-12">

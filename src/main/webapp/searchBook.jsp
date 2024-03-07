@@ -20,39 +20,46 @@
 	<div align="center">
 		<h1 class="mt-2">Search Book</h1>
 
-		<form action="index.jsp">
-			<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
-		</form>
-
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-start">
+					<form action="index.jsp">
+						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
+					</form>
+				</div>
+				<div class="col align-self-center">
+					<select class="btn btn-success dropdown-toggle" name="format"
+						id="format">
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+						<option value="string">STRING</option>
+					</select>
+				</div>
+				<div class="col align-self-end">
+					<input class="btn btn-primary" id="submitBtn" type="button"
+						value="SUBMIT"></input>
+				</div>
+			</div>
+		</div>
 
 		<!--    Code for radio button on/off with relevant text box-->
-		<div class="col-md-4 mt-2">
-			<label for="title">Title:</label> <input type="radio"
-				checked onchange="hideBookId(this)" id="title" name="bookOption">
-			<div id="bookTitleTextInput">
-				<br> <input type="text" id="bookTitleTextBox">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-start">
+					<label for="title">Title:</label> <input type="radio" checked
+						onchange="hideBookId(this)" id="title" name="bookOption">
+					<div id="bookTitleTextInput">
+						<br> <input type="text" id="bookTitleTextBox">
+					</div>
+				</div>
+				<div class="col align-self-center">
+					<label for="id">Book ID:</label> <input type="radio"
+						onchange="hideBookTitle(this)" id="id" name="bookOption">
+					<div id="bookIdTextInput">
+						<br> <input disabled type="number" id="bookIdTextBox">
+					</div>
+				</div>
 			</div>
-
-			<label for="id">Book ID:</label> <input type="radio"
-				onchange="hideBookTitle(this)" id="id" name="bookOption">
-			<div id="bookIdTextInput">
-				<br> <input disabled type="number" id="bookIdTextBox">
-			</div>
-		</div>
-
-		<div class="col-md-12 mt-2">
-			<select class="btn btn-success dropdown-toggle" name="format"
-				id="format">
-				<option value="json">JSON</option>
-				<option value="xml">XML</option>
-				<option value="string">STRING</option>
-			</select>
-		</div>
-
-		<BR>
-		<div class="col-md-12 mt-2">
-			<input class="btn btn-primary" id="submitBtn" type="button"
-				value="SUBMIT"></input>
 		</div>
 
 		<div id="loading" class="mt-2 col-md-12">
