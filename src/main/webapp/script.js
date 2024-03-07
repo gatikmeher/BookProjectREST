@@ -1,4 +1,19 @@
 //-----------------DISPLAY ALL books SCRIPT---------------//
+//-----------------UPDATE books SCRIPT---------------//
+function loadAllBooksPage() {
+    $("#json-xml-div").empty();
+    $("#loading").show();
+
+    $.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=json", function (responseText) {
+        $("#loading").hide();
+        showJsonDisplayAllBooksInfoForUpdate(responseText);
+
+        $("#json-xml-div").show();
+        $("#json-xml-div").text();
+    });
+}
+
+
 // XML DISPLAY
 function showDisplayXmlBookInfo(responseText) {
     var xmlDocument = responseText;
@@ -33,8 +48,8 @@ function showDisplayStringBookInfo(responseText) {
 function getTableForDisplayAllBooks(rows, subElementNames) {
     var table = "" +
         "<h1 class=\"text-center\">Display all books</h1>\n" +
-        "<table style='border: 1px solid black;' width='100%' text-align='center'>\n" +
-        "<tr bgcolor='#FFCC00' style='border: 1px solid black;'>" +
+        "<table class='table table-striped'>\n" +
+        "<thead><tr>" +
         `<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[1]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[2]}</b></th>` +
@@ -42,7 +57,7 @@ function getTableForDisplayAllBooks(rows, subElementNames) {
         ` <th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[4]}</b></th>` +
         ` <th width="30%" style='border: 1px solid black; text-align: center'><b>${subElementNames[5]}</b></th>` +
         ` <th width="30%" style='border: 1px solid black; text-align: center'><b>${subElementNames[6]}</b></th>` +
-        "  </tr>" +        
+        "</tr></thead>" +        
         getTableBody(rows, subElementNames) +
         "</table>";
     return (table);
@@ -95,7 +110,7 @@ $(document).on("click", "#getBooksBtn", function () {
     $("#json-xml-div").empty();
     $("#loading").show();
     var format = $("#format").val();
-    $.get("http://localhost:8080/demo/book/get-all-books", "format=" + format, function (responseText) {
+    $.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=" + format, function (responseText) {
         $("#loading").hide();
         if (format === 'json') {
             showJsonDisplayAllBooksInfo(responseText);
@@ -126,8 +141,8 @@ function showSearchXmlBookInfo(responseText) {
 function getSearchBookTable(rows, subElementNames) {
     var table = "" +
         "<h1 class=\"text-center\">Display Searched Book</h1>\n" +
-        "<table style='border: 1px solid black;' width='100%' text-align='center'>\n" +
-        "<tr bgcolor='#FFCC00' style='border: 1px solid black;'>" +
+        "<table class='table table-striped'>\n" +
+        "<tr>" +
        `<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[1]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[2]}</b></th>` +
@@ -170,7 +185,7 @@ $(document).on("click", "#submitBtn", function () {
     $("#loading").show();
     var params = title ? "title=" + title : "id=" + id;
     format = $("#format").val();
-    $.get("http://localhost:8080/demo/book/get-book-search", params + "&format=" + format, function (responseText) {
+    $.get("http://localhost:8080/BookProjectREST/book/get-book-search", params + "&format=" + format, function (responseText) {
         $("#loading").hide();
         if (format === 'json') {
             showSearchJsonBookInfo(responseText);
@@ -207,14 +222,11 @@ function hideBookId(x) {
 
 //-----------------INSERT books SCRIPT---------------//
 function getTable(responseText) {
-    var table = "" +
-        "<h1 class=\"text-center\">Insert Book</h1>\n" +
-        "<table border='1' align='center'>\n" +
-        "<tr bgcolor='00FF7F'>" +
+    var table = "<table class='table table-striped'>\n" +
+        "<tr>" +
         "<th><b>" + (responseText) + "</b></th>" +
         "</tr>" +
         "</table>";
-
     return (table);
 }
 
@@ -265,7 +277,7 @@ jQuery(document).on("click", "#btnSubmit", function () {
             "characters": characters,
             "synopsis": synopsis
         }
-        $.post("http://localhost:8080/demo/book/add-book" + "?format=" + format, book, function (responseText) {
+        $.post("http://localhost:8080/BookProjectREST/book/add-book" + "?format=" + format, book, function (responseText) {
             $("#loading").hide();
             if (format === 'json') {
                 showSuccessJsonBookInfo(responseText);
@@ -289,8 +301,8 @@ $(document).ready(function () {
 function getUpdateBookTable(responseText) {
     var updateTable = "" +
         "<h1 class=\"text-center\">Update Book</h1>\n" +
-        "<table border='1' align='center'>\n" +
-        "<tr bgcolor='00FF7F'>" +
+        "<table class='table table-striped'>\n" +
+        "<tr>" +
         "<th><b>" + (responseText) + "</b></th>" +
         "</tr>" +
         "</table>";
@@ -316,7 +328,7 @@ jQuery(document).on("click", "#submitUpdateBtn", function () {
 
 
     $.ajax({
-        url: 'http://localhost:8080/demo/book/update-book' + "?id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&format=" + format,
+        url: 'http://localhost:8080/BookProjectREST/book/update-book' + "?id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&format=" + format,
         type: 'PUT',
         data: "id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&synopsis=" + synopsis + "&format=" + format,
         success: function (responseText) {
@@ -348,7 +360,7 @@ function loadAllBooksOnUpdatePage() {
     $("#json-xml-div").empty();
     $("#loading").show();
 
-    $.get("http://localhost:8080/demo/book/get-all-books", "format=json", function (responseText) {
+    $.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=json", function (responseText) {
         $("#loading").hide();
         showJsonDisplayAllBooksInfoForUpdate(responseText);
 
@@ -365,10 +377,9 @@ function showJsonDisplayAllBooksInfoForUpdate(responseText) {
 }
 
 function getTableForDisplayAllBooksForUpdate(rows, subElementNames) {
-    var table = "" +
-        "<h1 class=\"text-center\">All books</h1>\n" +
-        "<table style='border: 1px solid black; text-align: center'>\n" +
-        "<tr bgcolor='FFCC00' style='border: 1px solid black; text-align: center'>" +
+    var table =
+        "<table class='table table-striped'>\n" +
+        "<tr>" +
         `<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[1]}</b></th>` +
         `<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[2]}</b></th>` +
@@ -401,7 +412,7 @@ function getTableBodyForUpdate(rows, subElementNames) {
 function updateById(element) {
     var id = $(element).attr("id");
     $.ajax({
-        url: "http://localhost:8080/demo/book/get-book-search?format=json&" + "id=" + id,
+        url: "http://localhost:8080/BookProjectREST/book/get-book-search?format=json&" + "id=" + id,
         type: 'GET',
         success: function (responseText) {
 			 $("#id").val(responseText[0].id);
@@ -422,7 +433,7 @@ function loadAllBooksOnDeletePage() {
     $("#json-xml-div").empty();
     $("#loading").show();
 
-    $.get("http://localhost:8080/demo/book/get-all-books", "format=json", function (responseText) {
+    $.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=json", function (responseText) {
         $("#loading").hide();
         showJsonDisplayAllBooksInfoForDelete(responseText);
 
@@ -434,7 +445,7 @@ function loadAllBooksOnDeletePage() {
 function deleteById(element) {
     var id = $(element).attr("id");
     $.ajax({
-        url: "http://localhost:8080/demo/book/delete-book?" + "id=" + id,
+        url: "http://localhost:8080/BookProjectREST/book/delete-book?" + "id=" + id,
         type: 'DELETE',
         success: function (responseText) {
             showJsonDisplayAllBooksInfoForDelete(responseText);
@@ -469,8 +480,8 @@ function getTableBodyForDelete(rows, subElementNames) {
 function getTableForDisplayAllBooksForDelete(rows, subElementNames) {
     var table = "" +
         "<h1 class=\"text-center\">All books</h1>\n" +
-        "<table style='border: 1px solid black; text-align: center' align='center'>\n" +
-        "<tr bgcolor='00FF7F'>" +
+        "<table class='table table-striped'>\n" +
+        "<tr>" +
         `<th><b>${subElementNames[0]}</b></th>` +
         `<th><b>${subElementNames[1]}</b></th>` +
         `<th><b>${subElementNames[2]}</b></th>` +

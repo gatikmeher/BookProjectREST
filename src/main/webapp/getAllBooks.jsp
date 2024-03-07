@@ -15,32 +15,38 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="script.js"></script>
 <title>All Books</title>
+<script>
+	$(document).ready(function() {
+		loadAllBooksPage();
+	})
+</script>
 </head>
 
 <body style="background-color: ivory">
 	<div align="center">
 		<h1 class="mt-2">Display All Book</h1>
 		<br>
-		
-		<form action="index.jsp">
-            <input type="submit" class="btn btn-danger" value="MAIN PAGE"/>
-        </form>
-
-		<div class="col-md-12 mt-2">
-			<select class="btn btn-success dropdown-toggle" name="format"
-				id="format">
-				<option value="json">JSON</option>
-				<option value="xml">XML</option>
-				<option value="string">STRING</option>
-			</select>
+		<div class="container text-center">
+			<div class="row align-items-start">
+				<div class="col">
+					<form action="index.jsp">
+						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
+					</form>
+				</div>
+				<div class="col">
+					<select class="btn btn-success dropdown-toggle" name="format"
+						id="format">
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+						<option value="string">STRING</option>
+					</select>
+				</div>
+				<div class="col">
+					<input class="btn btn-primary" id="getBooksBtn" type="button"
+						value="VIEW ALL BOOKS"></input>
+				</div>
+			</div>
 		</div>
-		<br>
-
-		<div class="col-md-12 mt-2">
-			<input class="btn btn-primary" id="getBooksBtn" type="button"
-				value="VIEW ALL BOOKS"></input>
-		</div>
-
 		<div id="loading" class="mt-2 col-md-12">
 			<h3>Loading .....</h3>
 		</div>
