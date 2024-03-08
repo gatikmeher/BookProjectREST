@@ -9,13 +9,13 @@
 	crossorigin="anonymous">
 <title>Book Management</title>
 <style>
-.btn-primary:hover {
+.btn-secondary:hover {
 	background-color: #4CAF50;
 	color: white;
 }
 </style>
 </head>
-<body style="background-color: ivory">
+<body>
 
 	<div align="center">
 		<h1 class="mt-2">Welcome to Book Management</h1>
@@ -24,28 +24,28 @@
 			<div class="row align-items-start">
 				<div class="col">
 					<form action="getAllBooks.jsp">
-						<input type="submit" class="btn btn-primary"
+						<input type="submit" class="btn btn-secondary"
 							value="DISPLAY ALL BOOKS" />
 					</form>
 				</div>
 				<div class="col">
 					<form action="searchBook.jsp">
-						<input type="submit" class="btn btn-primary" value="SEARCH BOOK" />
+						<input type="submit" class="btn btn-secondary" value="SEARCH BOOK" />
 					</form>
 				</div>
 				<div class="col">
-					<form action="addBook.jsp">
-						<input type="submit" class="btn btn-primary" value="ADD BOOK" />
+					<form action="addBook.html">
+						<input type="submit" class="btn btn-secondary" value="ADD BOOK" />
 					</form>
 				</div>
 				<div class="col">
 					<form action="updateBook.jsp">
-						<input type="submit" class="btn btn-primary" value="UPDATE BOOK" />
+						<input type="submit" class="btn btn-secondary" value="UPDATE BOOK" />
 					</form>
 				</div>
 				<div class="col">
 					<form action="deleteBook.jsp">
-						<input type="submit" class="btn btn-primary" value="DELETE BOOK" />
+						<input type="submit" class="btn btn-secondary" value="DELETE BOOK" />
 					</form>
 				</div>
 			</div>

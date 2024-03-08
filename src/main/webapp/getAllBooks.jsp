@@ -22,7 +22,7 @@
 </script>
 </head>
 
-<body style="background-color: ivory">
+<body>
 	<div align="center">
 		<h1 class="mt-2">Display All Book</h1>
 		<br>

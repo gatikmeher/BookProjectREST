@@ -21,7 +21,7 @@
 </script>
 <title>Delete Book</title>
 </head>
-<body style="background-color: ivory">
+<body>
 	<div align="center">
 		<h1 class="mt-2">Delete Book</h1>
 

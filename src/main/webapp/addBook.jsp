@@ -16,7 +16,7 @@
 <script src="script.js"></script>
 <title>Add Book</title>
 </head>
-<body style="background-color: ivory">
+<body>
 	<div align="center">
 		<h1 class="mt-2">Add Book</h1>
 

@@ -137,8 +137,7 @@ function showSearchXmlBookInfo(responseText) {
 }
 
 function getSearchBookTable(rows, subElementNames) {
-	var table = "" +
-		"<h1 class=\"text-center\">Display Searched Book</h1>\n" +
+	var table = 
 		"<table class='table table-striped'>\n" +
 		"<tr>" +
 		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
@@ -297,8 +296,7 @@ $(document).ready(function() {
 
 //-----------------UPDATE books SCRIPT---------------//
 function getUpdateBookTable(responseText) {
-	var updateTable = "" +
-		"<h1 class=\"text-center\">Update Book</h1>\n" +
+	var updateTable = 
 		"<table class='table table-striped'>\n" +
 		"<tr>" +
 		"<th><b>" + (responseText) + "</b></th>" +
@@ -468,7 +466,7 @@ function getTableBodyForDelete(rows, subElementNames) {
 		for (var j = 0; j < Object.keys(row).length; j++) {
 			body += "<td style='border: 1px solid black; text-align: center'>" + row[subElementNames[j]] + "</td>";
 		}
-		body += "<td style='border: 1px solid black; text-align: center'><b><button class=\"btn btn-danger\" onclick='deleteById(this)' id =\"" + row[subElementNames[0]] +
+		body += "<td style='border: 1px solid black; text-align: center'><b><button class=\"btn btn-secondary\" onclick='deleteById(this)' id =\"" + row[subElementNames[0]] +
 			" \" >Delete</button></b></td>";
 		body += "</tr>\n";
 	}
@@ -478,16 +476,15 @@ function getTableBodyForDelete(rows, subElementNames) {
 function getTableForDisplayAllBooksForDelete(rows, subElementNames) {
 	var table = 
 		"<table class='table table-striped'>\n" +
-		"<thead><tr>" +
 		"<tr>" +
-		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
-		`<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[1]}</b></th>` +
-		`<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[2]}</b></th>` +
-		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[3]}</b></th>` +
-		` <th width="20%" style='border: 1px solid black; text-align: center'><b>${subElementNames[4]}</b></th>` +
-		` <th width="10%"style='border: 1px solid black; text-align: center'><b>${subElementNames[5]}</b></th>` +
-		` <th width="35%"style='border: 1px solid black; text-align: center'><b>${subElementNames[6]}</b></th>` +
-		` <th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[7]}</b></th>` +
+		`<th width="5%" style='border: 1px solid black; text-align: center'><b>Id</b></th>` +
+		`<th width="10%" style='border: 1px solid black; text-align: center'><b>Title</b></th>` +
+		`<th width="10%" style='border: 1px solid black; text-align: center'><b>Author</b></th>` +
+		`<th width="5%" style='border: 1px solid black; text-align: center'><b>Date</b></th>` +
+		` <th width="20%" style='border: 1px solid black; text-align: center'><b>Genres</b></th>` +
+		` <th width="10%"style='border: 1px solid black; text-align: center'><b>Characters</b></th>` +
+		` <th width="35%"style='border: 1px solid black; text-align: center'><b>Synopsis</b></th>` +
+		` <th width="5%" style='border: 1px solid black; text-align: center'><b>Action</b></th>` +
 		"  </tr>" +
 		getTableBodyForDelete(rows, subElementNames) +
 		"</table>";
