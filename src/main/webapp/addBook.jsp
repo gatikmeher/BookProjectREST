@@ -28,14 +28,7 @@
 					</form>
 				</div>
 				<div class="col align-self-center">
-					<div class="col-md-12 mt-2">
-						<select class="btn btn-success dropdown-toggle" name="format"
-							id="format">
-							<option value="json">JSON</option>
-							<option value="xml">XML</option>
-							<option value="string">STRING</option>
-						</select>
-					</div>
+					<div id="message" style="color: red"></div>
 				</div>
 				<div class="col align-self-end">
 					<div class="col-md-12 mt-2">

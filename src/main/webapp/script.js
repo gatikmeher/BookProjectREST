@@ -32,7 +32,7 @@ function showDisplayStringBookInfo(responseText) {
 	var subElementNames = ["id", "title", "author", "date", "genres", "characters", "synopsis"];
 	for (var i = 0; i < books.length - 1; i++) {
 		rows[i] = {};
-		rows[i]["id"] = books[i].split("--")[0].split(":")[1];		
+		rows[i]["id"] = books[i].split("--")[0].split(":")[1];
 		rows[i]["title"] = books[i].split("--")[1].split(":")[1];
 		rows[i]["author"] = books[i].split("--")[2].split(":")[1];
 		rows[i]["date"] = books[i].split("--")[3].split(":")[1];
@@ -84,7 +84,7 @@ function htmlInsert(id, table) {
 function getTableBody(rows, subElementNames) {
 	var body = "";
 	console.log("Roowads: " + rows.length);
-	if(rows.length < 1) {
+	if (rows.length < 1) {
 		body = "<p style='text-align: center; color: red;'><b>No data found</b></p>";
 	} else {
 		for (var i = 0; i < rows.length; i++) {
@@ -94,9 +94,9 @@ function getTableBody(rows, subElementNames) {
 				body += "<td style='border: 1px solid black;'>" + row[subElementNames[j]] + "</td>";
 			}
 			body += "</tr>\n";
-		}	
+		}
 	}
-	
+
 	return (body);
 }
 
@@ -144,7 +144,7 @@ function showSearchXmlBookInfo(responseText) {
 }
 
 function getSearchBookTable(rows, subElementNames) {
-	var table = 
+	var table =
 		"<table class='table table-striped'>\n" +
 		"<tr>" +
 		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
@@ -274,15 +274,12 @@ jQuery(document).on("click", "#btnSubmit", function() {
 		"characters": characters,
 		"synopsis": synopsis
 	}
-	$.post("http://localhost:8080/BookProjectREST/book/add-book" + "?format=" + format, book, function(responseText) {
+	$.post("http://localhost:8080/BookProjectREST/book/add-book" + "?format=json", book, function(responseText) {
 		$("#loading").hide();
-		if (format === 'json') {
-			showSuccessJsonBookInfo(responseText);
-		} else if (format === 'xml') {
-			showSuccessXMLBook(responseText);
-		} else if (format === 'string') {
-			showSuccessStringBook(responseText)
-		}
+		$("#message").show();
+		document.getElementById("message").innerHTML = (responseText.response);
+		loadAllBooksOnUpdatePage();
+		showSuccessJsonBookInfo(responseText);		
 		$("#json-xml-div").show();
 		$("#json-xml-div").text();
 	});
@@ -296,7 +293,7 @@ $(document).ready(function() {
 
 //-----------------UPDATE books SCRIPT---------------//
 function getUpdateBookTable(responseText) {
-	var updateTable = 
+	var updateTable =
 		"<table class='table table-striped'>\n" +
 		"<tr>" +
 		"<th><b>" + (responseText) + "</b></th>" +
@@ -331,19 +328,12 @@ jQuery(document).on("click", "#submitUpdateBtn", function() {
 			console.log(responseText);
 			$("#loading").hide();
 			$("#message").show();
-			document.getElementById("message").innerHTML = responseText.value();
+			document.getElementById("message").innerHTML = (responseText.response);
 			loadAllBooksOnUpdatePage();
-			if (format === 'json') {
-				showSuccessJsonBookInfo(responseText);
-			} else if (format === 'xml') {
-				showSuccessXMLBook(responseText);
-			} else {
-				showSuccessStringBook(responseText);
-			}
-			if (format === 'xml' || format === 'json') {
-				$("#json-xml-div").show();
-				$("#json-xml-div").text();
-			}
+			showSuccessJsonBookInfo(responseText);
+			$("#json-xml-div").show();
+			$("#json-xml-div").text();
+
 		}
 	});
 });
@@ -477,7 +467,7 @@ function getTableBodyForDelete(rows, subElementNames) {
 }
 
 function getTableForDisplayAllBooksForDelete(rows, subElementNames) {
-	var table = 
+	var table =
 		"<table class='table table-striped'>\n" +
 		"<tr>" +
 		`<th width="5%" style='border: 1px solid black; text-align: center'><b>Id</b></th>` +

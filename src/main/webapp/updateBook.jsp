@@ -40,7 +40,7 @@
 					</select>
 				</div> -->
 				<div class="col align-self-center">
-					<div id="message"></div>
+					<div id="message" style="color: red"></div>
 				</div>
 				<div class="col align-self-end">
 					<input class="btn btn-primary" id="submitUpdateBtn" type="button"
