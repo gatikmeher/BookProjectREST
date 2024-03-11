@@ -18,7 +18,7 @@
 <body>
 
 	<div align="center">
-		<h1 class="mt-2">Welcome to Book Management</h1>
+		<h1 class="mt-2">Book Management</h1>
 		<p>Please Select</p>
 		<div class="container text-center">
 			<div class="row align-items-start">

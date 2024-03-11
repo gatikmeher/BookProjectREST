@@ -5,7 +5,7 @@ function loadAllBooksPage() {
 
 	$.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=json", function(responseText) {
 		$("#loading").hide();
-		showJsonDisplayAllBooksInfoForUpdate(responseText);
+		showJsonDisplayAllBooksInfo(responseText);
 		$("#json-xml-div").show();
 		$("#json-xml-div").text();
 	});
@@ -26,19 +26,26 @@ function showDisplayXmlBookInfo(responseText) {
 }
 
 function showDisplayStringBookInfo(responseText) {
-	var books = responseText.split("#");
+	var books = responseText.split("###");
 	var rows = new Array(books.length - 1);
-	console.log("Rows: " + rows);
+	console.log("Books: " + books);
 	var subElementNames = ["id", "title", "author", "date", "genres", "characters", "synopsis"];
 	for (var i = 0; i < books.length - 1; i++) {
 		rows[i] = {};
-		rows[i]["id"] = books[i].split("--")[0].split(":")[1];
-		rows[i]["title"] = books[i].split("--")[1].split(":")[1];
-		rows[i]["author"] = books[i].split("--")[2].split(":")[1];
-		rows[i]["date"] = books[i].split("--")[3].split(":")[1];
-		rows[i]["genres"] = books[i].split("--")[4].split(":")[1];
-		rows[i]["characters"] = books[i].split("--")[5].split(":")[1];
-		rows[i]["synopsis"] = books[i].split("--")[6].split(":")[1];
+		rows[i]["id"] = books[i].split("--")[0].split("=")[1];
+		rows[i]["title"] = books[i].split("--")[1].split("=")[1];
+		rows[i]["author"] = books[i].split("--")[2].split("=")[1];
+		rows[i]["date"] = books[i].split("--")[3].split("=")[1];
+		rows[i]["genres"] = books[i].split("--")[4].split("=")[1];
+		rows[i]["characters"] = books[i].split("--")[5].split("=")[1];
+		rows[i]["synopsis"] = books[i].split("--")[6].split("=")[1];
+		console.log("Row: " + rows[i]["id"]);
+		console.log("Row: " + rows[i]["title"]);
+		console.log("Row: " + rows[i]["author"]);
+		console.log("Row: " + rows[i]["date"]);
+		console.log("Row: " + rows[i]["genres"]);
+		console.log("Row: " + rows[i]["characters"]);
+		console.log("Row: " + rows[i]["synopsis"]);
 	}
 	var table = getTableForDisplayAllBooks(rows, subElementNames);
 	htmlInsert("json-xml-div", table);
@@ -46,7 +53,12 @@ function showDisplayStringBookInfo(responseText) {
 }
 
 function getTableForDisplayAllBooks(rows, subElementNames) {
-	var table =
+	var table = "";
+	console.log("Row##:  " + rows.length);
+	if (rows.length < 1) {
+		table = "<p style='text-align: center; color: red;'><b>No data found</b></p>";
+	} else {
+		table = 
 		"<table class='table table-striped'>\n" +
 		"<thead><tr>" +
 		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
@@ -59,6 +71,8 @@ function getTableForDisplayAllBooks(rows, subElementNames) {
 		"</tr></thead>" +
 		getTableBody(rows, subElementNames) +
 		"</table>";
+	}
+
 	return (table);
 }
 
@@ -83,10 +97,7 @@ function htmlInsert(id, table) {
 
 function getTableBody(rows, subElementNames) {
 	var body = "";
-	console.log("Roowads: " + rows.length);
-	if (rows.length < 1) {
-		body = "<p style='text-align: center; color: red;'><b>No data found</b></p>";
-	} else {
+	 
 		for (var i = 0; i < rows.length; i++) {
 			body += "  <tr>";
 			var row = rows[i];
@@ -95,7 +106,7 @@ function getTableBody(rows, subElementNames) {
 			}
 			body += "</tr>\n";
 		}
-	}
+	
 
 	return (body);
 }
@@ -144,9 +155,14 @@ function showSearchXmlBookInfo(responseText) {
 }
 
 function getSearchBookTable(rows, subElementNames) {
-	var table =
+	var table = "";
+	console.log("Row##:  " + rows.length);
+	if (rows.length < 1) {
+		table = "<p style='text-align: center; color: red;'><b>No data found</b></p>";
+	} else {
+		table = 
 		"<table class='table table-striped'>\n" +
-		"<tr>" +
+		"<thead><tr>" +
 		`<th width="5%" style='border: 1px solid black; text-align: center'><b>${subElementNames[0]}</b></th>` +
 		`<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[1]}</b></th>` +
 		`<th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[2]}</b></th>` +
@@ -154,9 +170,11 @@ function getSearchBookTable(rows, subElementNames) {
 		` <th width="10%" style='border: 1px solid black; text-align: center'><b>${subElementNames[4]}</b></th>` +
 		` <th width="30%" style='border: 1px solid black; text-align: center'><b>${subElementNames[5]}</b></th>` +
 		` <th width="30%" style='border: 1px solid black; text-align: center'><b>${subElementNames[6]}</b></th>` +
-		"  </tr>" +
+		"</tr></thead>" +
 		getTableBody(rows, subElementNames) +
 		"</table>";
+	}
+
 	return (table);
 }
 
