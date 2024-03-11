@@ -17,4 +17,4 @@ To build your application in the simply run: `mvn clean install` and it will exe
 ## Starting Application
 Deploy the application on to tomcat from Eclipse and start the tomcat server
 
-To check your system has started successfully, Try accessing it from http://localhost:8080
+To check your system has started successfully, Try accessing it from http://localhost:8080/BookProjectREST
