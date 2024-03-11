@@ -1,7 +1,7 @@
 package com.book.service.servlets;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,24 +25,17 @@ public class SearchBookServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title = request.getParameter("title");
 		Long id = request.getParameter("id") != null ? Long.valueOf((request.getParameter("id"))) : null;
-		List<Book> books;
+		List<Book> books = new ArrayList<Book>();
 		if (title != null && !title.equals("")) {
 			books = BookRepository.getInstance().getBookByTitle(title);
 		} else {
-			books = Collections.singletonList(BookRepository.getInstance().getBookById(id));
+			Book book = BookRepository.getInstance().getBookById(id);
+			if(book != null) {
+				books.add(book);
+			}
 		}
 		request.setAttribute("bookList", books);
-
-		String format = request.getParameter("format");
-		if ("xml".equals(format)) {
-			response.setContentType("text/xml");
-			response.getWriter().println(CommonUtil.convertListToXml(books));
-		} else if ("json".equals(format)) {
-			response.setContentType("application/json");
-			response.getWriter().println(CommonUtil.convertListToJson(books));
-		} else {
-			response.setContentType("text/string");
-			response.getWriter().println(books.toString());
-		}
+		response.setContentType("application/json");
+		response.getWriter().println(CommonUtil.convertListToJson(books));
 	}
 }

@@ -49,7 +49,7 @@ public class BookRepository {
 
         try {
             //Select query for all books
-            String selectSQL = "SELECT id, title, author, date, genres, characters, synopsis from books order by id desc limit 25";
+            String selectSQL = "SELECT id, title, author, date, genres, characters, synopsis from books order by id desc";
             ResultSet rs1 = stmt.executeQuery(selectSQL);
             //Retrieve the results
             while (rs1.next()) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.book.service.dao.BookRepository;
 import com.book.service.entity.Book;
+import com.book.service.validator.BookValidator;
 
 /**
  * Class for Update Book Servlet
@@ -19,6 +20,7 @@ public class UpdateBookServlet extends HttpServlet {
 	// DoPut as record is being updated
 	@Override
 	public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		BookValidator bookValidator = new BookValidator();
 		Long id = Long.valueOf(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
@@ -26,18 +28,13 @@ public class UpdateBookServlet extends HttpServlet {
 		String genres = request.getParameter("genres");
 		String characters = request.getParameter("characters");
 		String synopsis = request.getParameter("synopsis");
-		BookRepository.getInstance().updateBook(new Book(id, title, author, date, genres, characters, synopsis));
-
-		String format = request.getParameter("format");
-		if ("xml".equals(format)) {
-			response.setContentType("text/xml");
-			response.getWriter().println("<response> Successfully updated book </response>");
-		} else if ("json".equals(format)) {
-			response.setContentType("application/json");
+		String errorMessage = bookValidator.checkInputValue(title, author, date, genres, characters, synopsis);
+		if (errorMessage == null) {
+			BookRepository.getInstance().updateBook(new Book(id, title, author, date, genres, characters, synopsis));
 			response.getWriter().println("{\"response\":\"Successfully updated book\"}");
 		} else {
-			response.setContentType("text/string");
-			response.getWriter().println("Successfully inserted book");
+			response.getWriter().println("{\"response\":\"" + errorMessage + "\"}");
 		}
+		response.setContentType("application/json");
 	}
 }

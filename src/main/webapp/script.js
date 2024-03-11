@@ -6,7 +6,6 @@ function loadAllBooksPage() {
 	$.get("http://localhost:8080/BookProjectREST/book/get-all-books", "format=json", function(responseText) {
 		$("#loading").hide();
 		showJsonDisplayAllBooksInfoForUpdate(responseText);
-
 		$("#json-xml-div").show();
 		$("#json-xml-div").text();
 	});
@@ -29,6 +28,7 @@ function showDisplayXmlBookInfo(responseText) {
 function showDisplayStringBookInfo(responseText) {
 	var books = responseText.split("#");
 	var rows = new Array(books.length - 1);
+	console.log("Rows: " + rows);
 	var subElementNames = ["id", "title", "author", "date", "genres", "characters", "synopsis"];
 	for (var i = 0; i < books.length - 1; i++) {
 		rows[i] = {};
@@ -42,6 +42,7 @@ function showDisplayStringBookInfo(responseText) {
 	}
 	var table = getTableForDisplayAllBooks(rows, subElementNames);
 	htmlInsert("json-xml-div", table);
+
 }
 
 function getTableForDisplayAllBooks(rows, subElementNames) {
@@ -82,14 +83,20 @@ function htmlInsert(id, table) {
 
 function getTableBody(rows, subElementNames) {
 	var body = "";
-	for (var i = 0; i < rows.length; i++) {
-		body += "  <tr>";
-		var row = rows[i];
-		for (var j = 0; j < Object.keys(row).length; j++) {
-			body += "<td style='border: 1px solid black;'>" + row[subElementNames[j]] + "</td>";
-		}
-		body += "</tr>\n";
+	console.log("Roowads: " + rows.length);
+	if(rows.length < 1) {
+		body = "<p style='text-align: center; color: red;'><b>No data found</b></p>";
+	} else {
+		for (var i = 0; i < rows.length; i++) {
+			body += "  <tr>";
+			var row = rows[i];
+			for (var j = 0; j < Object.keys(row).length; j++) {
+				body += "<td style='border: 1px solid black;'>" + row[subElementNames[j]] + "</td>";
+			}
+			body += "</tr>\n";
+		}	
 	}
+	
 	return (body);
 }
 
@@ -182,16 +189,9 @@ $(document).on("click", "#submitBtn", function() {
 	$("#loading").show();
 	var params = title ? "title=" + title : "id=" + id;
 	format = $("#format").val();
-	$.get("http://localhost:8080/BookProjectREST/book/get-book-search", params + "&format=" + format, function(responseText) {
+	$.get("http://localhost:8080/BookProjectREST/book/get-book-search", params + "&format=json", function(responseText) {
 		$("#loading").hide();
-		if (format === 'json') {
-			showSearchJsonBookInfo(responseText);
-		} else if (format === 'xml') {
-			showSearchXmlBookInfo(responseText);
-		} else if (format == 'string') {
-			showDisplayStringBookInfo(responseText);
-		}
-
+		showSearchJsonBookInfo(responseText);
 		$("#json-xml-div").show();
 		$("#json-xml-div").text();
 	});
@@ -324,12 +324,15 @@ jQuery(document).on("click", "#submitUpdateBtn", function() {
 
 
 	$.ajax({
-		url: 'http://localhost:8080/BookProjectREST/book/update-book' + "?id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&format=" + format,
+		url: 'http://localhost:8080/BookProjectREST/book/update-book' + "?id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&synopsis=" + synopsis + "&format=" + format,
 		type: 'PUT',
 		data: "id=" + id + "&title=" + title + "&author=" + author + "&date=" + date + "&genres=" + genres + "&characters=" + characters + "&synopsis=" + synopsis + "&format=" + format,
 		success: function(responseText) {
 			console.log(responseText);
 			$("#loading").hide();
+			$("#message").show();
+			document.getElementById("message").innerHTML = responseText.value();
+			loadAllBooksOnUpdatePage();
 			if (format === 'json') {
 				showSuccessJsonBookInfo(responseText);
 			} else if (format === 'xml') {

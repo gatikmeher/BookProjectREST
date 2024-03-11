@@ -34,7 +34,7 @@
 					</form>
 				</div>
 				<div class="col">
-					<form action="addBook.html">
+					<form action="addBook.jsp">
 						<input type="submit" class="btn btn-secondary" value="ADD BOOK" />
 					</form>
 				</div>
