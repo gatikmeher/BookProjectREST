@@ -19,7 +19,7 @@
 
 	<div align="center">
 		<h1 class="mt-2">Book Management</h1>
-		<p>Please Select</p>
+		<p>Please choose from one of the following:</p>
 		<div class="container text-center">
 			<div class="row align-items-start">
 				<div class="col">

@@ -296,10 +296,11 @@ jQuery(document).on("click", "#btnSubmit", function() {
 		$("#loading").hide();
 		$("#message").show();
 		document.getElementById("message").innerHTML = (responseText.response);
-		loadAllBooksOnUpdatePage();
+		loadAllBooksPage();
 		showSuccessJsonBookInfo(responseText);		
 		$("#json-xml-div").show();
 		$("#json-xml-div").text();
+		$("#message").hide();
 	});
 }
 );
@@ -351,7 +352,7 @@ jQuery(document).on("click", "#submitUpdateBtn", function() {
 			showSuccessJsonBookInfo(responseText);
 			$("#json-xml-div").show();
 			$("#json-xml-div").text();
-
+			$("#message").hide();
 		}
 	});
 });
@@ -506,5 +507,3 @@ $(document).ready(function() {
 	$("#json-xml-div").hide();
 	$("#loading").hide();
 });
-
-

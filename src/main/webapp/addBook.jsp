@@ -51,7 +51,7 @@
 						class="form-control" id="author" required>
 				</div>
 				<div class="col align-self-end">
-					<label for="date">Date:</label> <input type="text"
+					<label for="date">Date:</label> <input type="date"
 						class="form-control" id="date" required>
 				</div>
 				<div class="col align-self-start">

@@ -18,7 +18,7 @@
 <script>
 	$(document).ready(function() {
 		loadAllBooksOnUpdatePage();
-	})
+	});
 </script>
 </head>
 <body>
@@ -31,14 +31,6 @@
 						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
 					</form>
 				</div>
-				<!-- <div class="col align-self-center">
-					<select class="btn btn-success dropdown-toggle" name="format"
-						id="format">
-						<option value="json">JSON</option>
-						<option value="xml">XML</option>
-						<option value="string">STRING</option>
-					</select>
-				</div> -->
 				<div class="col align-self-center">
 					<div id="message" style="color: red"></div>
 				</div>
@@ -54,7 +46,7 @@
 			<div class="row align-items-start">
 				<div class="col">
 					<label for="id">Book Id:</label> <input type="number"
-						class="form-control" id="id" required>
+						class="form-control" id="id" required readonly="readonly">
 				</div>
 				<div class="col">
 					<label for="title">Title:</label> <input type="text"
@@ -70,8 +62,8 @@
 		<div class="container text-center">
 			<div class="row align-items-start">
 				<div class="col">
-					<label for="date">Date:</label> <input type="text"
-						class="form-control" id="date" required>
+					<label>Date:</label> <input type="date" class="form-control"
+						id="date" required>
 				</div>
 				<div class="col">
 					<label for="genres">Genres:</label> <input type="text"
