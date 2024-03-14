@@ -31,9 +31,16 @@
 						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
 					</form>
 				</div>
-				<div class="col align-self-center">
-					<div id="message" style="color: red"></div>
+				<div class="col">
+					<select class="btn btn-success dropdown-toggle" name="format"
+						id="format">
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+						<option value="string">STRING</option>
+					</select>
+					<div id="message"></div>
 				</div>
+
 				<div class="col align-self-end">
 					<input class="btn btn-primary" id="submitUpdateBtn" type="button"
 						value="SUBMIT" />

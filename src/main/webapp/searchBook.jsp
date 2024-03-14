@@ -27,14 +27,14 @@
 						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
 					</form>
 				</div>
-<!-- 				<div class="col align-self-center">
+				<div class="col align-self-center">
 					<select class="btn btn-success dropdown-toggle" name="format"
 						id="format">
 						<option value="json">JSON</option>
 						<option value="xml">XML</option>
 						<option value="string">STRING</option>
 					</select>
-				</div> -->
+				</div>
 				<div class="col align-self-end">
 					<input class="btn btn-primary" id="submitBtn" type="button"
 						value="SUBMIT"></input>

@@ -121,7 +121,7 @@ public class BookRepository {
             pstmt.setString(3, book.getDate());
             pstmt.setString(4, book.getGenres());
             pstmt.setString(5, book.getCharacters());
-            pstmt.setString(6, book.getSynopsis());
+            pstmt.setString(6, book.getSynopsis());          
             return pstmt.executeUpdate();
         } catch (SQLException se) {
             logger.debug(se.getMessage());
