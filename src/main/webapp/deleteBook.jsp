@@ -16,25 +16,86 @@
 <script src="script.js"></script>
 <script>
 	$(document).ready(function() {
-		loadAllBooksOnDeletePage();
+		loadAllBooksOnDeletePage(1);
+
+		// Pagination click event
+		$(document).on('click', '.page-link', function() {
+			var page = $(this).data('page');
+			loadAllBooksOnDeletePage(page);
+		});
 	})
 </script>
 <title>Delete Book</title>
+<style>
+.pagination {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+}
+
+.pagination li {
+	margin: 0 5px;
+}
+
+.pagination li.active a {
+	background-color: #007bff;
+	color: #fff;
+	border-radius: 4px;
+	padding: 8px 12px;
+}
+
+.pagination li a {
+	text-decoration: none;
+	color: #007bff;
+	padding: 8px 12px;
+	border: 1px solid #007bff;
+	border-radius: 4px;
+}
+
+.pagination li a:hover {
+	background-color: #f2f2f2;
+}
+
+.pagination .disabled a {
+	pointer-events: none;
+	opacity: 0.6;
+}
+</style>
 </head>
 <body>
 	<div align="center">
 		<h1 class="mt-2">Delete Book</h1>
+		<div class="container text-center">
+			<div class="row">
+				<div class="col align-self-start">
+					<form action="index.jsp">
+						<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
+					</form>
+				</div>
+				<div class="col align-self-center">
+					<select class="btn btn-success dropdown-toggle" name="format"
+						id="format">
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+						<option value="string">STRING</option>
+					</select>
+				</div>
 
-		<form action="index.jsp">
-			<input type="submit" class="btn btn-danger" value="MAIN PAGE" />
-		</form>
-
-		<div id="loading" class="mt-2 col-md-12">
-			<h3>Loading .....</h3>
+				<div id="loading" class="mt-2 col-md-12">
+					<h3>Loading .....</h3>
+				</div>
+			</div>
 		</div>
-
 	</div>
-
+	<!-- Pagination -->
+	<div class="row mt-3">
+		<div class="col text-center">
+			<ul class="pagination" id="pagination">
+				<!-- Pagination links will be dynamically inserted here -->
+			</ul>
+		</div>
+	</div>
 	<div class="m-3" id="json-xml-div"></div>
 
 	<div class="mt-2" id="html-div"></div>

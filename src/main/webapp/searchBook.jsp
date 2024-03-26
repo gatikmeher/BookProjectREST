@@ -15,6 +15,42 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="script.js"></script>
 <title>Search Book/s</title>
+<style>
+.pagination {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+}
+
+.pagination li {
+	margin: 0 5px;
+}
+
+.pagination li.active a {
+	background-color: #007bff;
+	color: #fff;
+	border-radius: 4px;
+	padding: 8px 12px;
+}
+
+.pagination li a {
+	text-decoration: none;
+	color: #007bff;
+	padding: 8px 12px;
+	border: 1px solid #007bff;
+	border-radius: 4px;
+}
+
+.pagination li a:hover {
+	background-color: #f2f2f2;
+}
+
+.pagination .disabled a {
+	pointer-events: none;
+	opacity: 0.6;
+}
+</style>
 </head>
 <body>
 	<div align="center">
@@ -65,8 +101,18 @@
 		<div id="loading" class="mt-2 col-md-12">
 			<h3>Loading .....</h3>
 		</div>
+		<!-- Pagination -->
+		<div class="mt-3">
+			<div class="col text-center">
+				<ul class="pagination" id="pagination">
+					<!-- Pagination links will be dynamically inserted here -->
+				</ul>
+			</div>
+		</div>
 
 	</div>
+
+
 
 	<div class="m-3" id="json-xml-div"></div>
 

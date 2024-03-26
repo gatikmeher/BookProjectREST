@@ -1,6 +1,6 @@
 package com.book.service.dao;
 
-import com.book.service.entity.Book;
+import com.book.service.entity.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +42,7 @@ public class BookRepository {
 
 
     //An arraylist of books
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks(int page,int size) {
 
         List<Book> allbooks = new ArrayList<>();
         openConnection();
@@ -61,7 +61,11 @@ public class BookRepository {
         } finally {
             closeConnection();
         }
-        return allbooks;
+        // Adjust the page index
+        int adjustedPage = Math.max(1, page); // Ensure page is at least 1
+        int startIndex = (adjustedPage - 1) * size;
+        int endIndex = Math.min(startIndex + size, allbooks.size());
+        return allbooks.subList(startIndex, endIndex);
     }
 
 
@@ -86,7 +90,7 @@ public class BookRepository {
     }
 
 
-    public List<Book> getBookByTitle(String bookTitle) {
+    public List<Book> getBookByTitle(String bookTitle, int page, int size) {
         openConnection();
         onebook = null;
 
@@ -105,7 +109,15 @@ public class BookRepository {
         } finally {
             closeConnection();
         }
-        return allbooks;
+        // Adjust the page index
+        int adjustedPage = Math.max(1, page); // Ensure page is at least 1
+        int startIndex = (adjustedPage - 1) * size;
+        int endIndex = Math.min(startIndex + size, allbooks.size());
+        if(allbooks.size()<20)
+        {
+        	return allbooks;
+        }
+        return allbooks.subList(startIndex, endIndex);
     }
 
     //Inserting books into database
@@ -154,6 +166,7 @@ public class BookRepository {
         }
         return 0;
     }
+    
 
     //Delete book
     public int deleteBook(Long bookId) {

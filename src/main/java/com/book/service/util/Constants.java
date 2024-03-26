@@ -11,7 +11,7 @@ public class Constants {
     //User name in MySql database
     public static final String USER = "root";
     //Password in MySql database
-    public static final String TOKEN = "password";
+    public static final String TOKEN = "Password1234";
     //MySql database name
     public static final String DB_NAME = "book_project";
     //MySql database details

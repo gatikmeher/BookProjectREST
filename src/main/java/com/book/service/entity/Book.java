@@ -1,37 +1,43 @@
 package com.book.service.entity;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Class for Book
  */
+@XmlRootElement(name = "book")
 public class Book {
-	
-    private Long id;
-    private String title;
-    private String date;
-    private String author;
-    private String genres;
-    private String characters;
-    private String synopsis;
 
-    public Book(Long id, String title, String author, String date, String genres, String characters, String synopsis) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.author = author;
-        this.genres = genres;
-        this.characters = characters;
-        this.synopsis = synopsis;
+	private Long id;
+	private String title;
+	private String date;
+	private String author;
+	private String genres;
+	private String characters;
+	private String synopsis;
 
-    }
+	public Book(Long id, String title, String author, String date, String genres, String characters, String synopsis) {
+		this.id = id;
+		this.title = title;
+		this.date = date;
+		this.author = author;
+		this.genres = genres;
+		this.characters = characters;
+		this.synopsis = synopsis;
 
-    public Book(String title,  String author, String date, String genres, String characters, String synopsis) {
-        this.title = title;
-        this.date = date;
-        this.author = author;
-        this.genres = genres;
-        this.characters = characters;
-        this.synopsis = synopsis;
-    }
+	}
+
+	public Book(String title, String author, String date, String genres, String characters, String synopsis) {
+		this.title = title;
+		this.date = date;
+		this.author = author;
+		this.genres = genres;
+		this.characters = characters;
+		this.synopsis = synopsis;
+	}
+
+	public Book() {
+	}
 
 	public Long getId() {
 		return id;
@@ -94,8 +100,5 @@ public class Book {
 		return "id=" + id + "-- title=" + title + "-- date=" + date + "-- author=" + author + "-- genres=" + genres
 				+ "-- characters=" + characters + "-- synopsis=" + synopsis + "###";
 	}
-	
-	
 
-    
 }
